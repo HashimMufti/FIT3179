@@ -18,13 +18,13 @@
         "fields": ["nkill"]
       }
     },
-    {"calculate": "datum.nkill + 1", "as": "Active Cases"}
+    {"calculate": "datum.nkill + 1", "as": "Number killed (relative)"}
   ],
   "projection": {"type": "equirectangular"},
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "Active Cases",
+      "field": "Number killed (relative)",
       "type": "quantitative",
       "scale": {"type": "log"}
     },
