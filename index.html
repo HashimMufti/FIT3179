@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 </head>
 <body>
-
+<h1>An Example of Multiple Visualisations</h1>
 <div id="vis"></div>
 
 <script type="text/javascript">
@@ -16,6 +16,11 @@
   vegaEmbed('#vis', spec).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
+  var spec = "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/js/scatter_plot_interactive.vg.json";
+  vegaEmbed('#vis', spec).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
 </script>
 
 </body>
