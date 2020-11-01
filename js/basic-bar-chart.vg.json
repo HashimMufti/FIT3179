@@ -4,7 +4,7 @@
   "width": 800,
   "height": 600,
   "data": {
-    "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/js/ne_110m_admin_0_countries.topojson",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
   "transform": [
@@ -12,7 +12,7 @@
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/post_edit.csv"
+          "url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual1.csv"
         },
         "key": "country_txt",
         "fields": ["nkill"]
@@ -26,7 +26,7 @@
     "color": {
       "field": "Number killed (relative)",
       "type": "quantitative",
-      "scale": {"type": "log"}
+      "scale": {"type": "log", "scheme":"lightmulti"}
     },
     "tooltip": [
       {"field": "properties.NAME", "type": "nominal", "title": "Country"},
