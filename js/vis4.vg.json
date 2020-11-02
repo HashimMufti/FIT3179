@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Number of people killed in terrorist attacks (relative)",
+  "width": 800, "height": 800,
+  "data": {"url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual2.csv"},
+  "transform": [{"filter": "datum.nkill > 100"}],
+  "mark": "area",
+  "selection": {
+    "industry": {
+      "type": "multi", "fields": ["country_txt"], "bind": "legend"
+    }
+  },
+  "encoding": {
+    "x": {
+      "timeUnit": "year", "field": "iyear", "title": "Year",
+      "axis": {"domain": false, "format": "%Y", "tickSize": 0}
+    },
+    "y": {
+      "aggregate": "sum", "field": "nkill", "title": "Number killed",
+      "stack": "center", "axis": null
+    },
+    "color": {
+      "field":"country_txt",
+      "scale": {"scheme": "category20b"},
+      "title": "Country"
+    },
+    "opacity": {
+      "condition": {"selection": "industry", "value": 1},
+      "value": 0.2
+    }
+  }
+}
