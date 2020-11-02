@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "title": "Terrorist attacks with over 100 deaths (2001-2017)",
-  "width": 1000,
+  "width": "container",
   "height": 500,
   "description": "Multi-series line chart with labels and interactive highlight on hover.  We also set the selection's initial value to provide a better screenshot",
   "data": {"url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual2.csv"},
