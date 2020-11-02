@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {"url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual2.csv"},
+  "title": "Total number of People Killed",
+  "width": 800,
+  "height": 800,
+  "encoding": {
+      "x": {"timeUnit": "year", "field": "iyear", "title": "Year"},
+      "y": {"aggregate": "sum", "field": "nkill", "title": "Number of People Killed"}
+  },
+  "layer": [{
+    "selection": {
+      "brush": {
+        "type": "interval",
+        "encodings": ["x"]
+      }
+    },
+    "mark": "area"
+  }, {
+    "transform": [
+      {"filter": {"selection": "brush"}}
+    ],
+    "mark": {"type": "area", "color": "darkred"}
+  }]
+}
