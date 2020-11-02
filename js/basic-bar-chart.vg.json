@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "title": "Number of killed in Terrorists Attacks (relative)",
-  "width": 800,
+  "width": "container",
   "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/js/ne_110m_admin_0_countries.topojson",
