@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "Terrorist attacks (2001-2017)",
+  "width": 1000,
+  "height": 500,
+  "description": "Multi-series line chart with labels and interactive highlight on hover.  We also set the selection's initial value to provide a better screenshot",
+  "data": {"url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual2.csv"},
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Afghanistan","Albania","Algeria","Angola","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia-Herzegovina","Brazil","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Democratic Republic of the Congo","Denmark","Djibouti","Dominican Republic","East Timor","Ecuador","Egypt","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","International","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mexico","Moldova","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Pakistan","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Republic of the Congo","Romania","Russia","Rwanda","Saudi Arabia","Senegal","Serbia","Serbia-Montenegro","Sierra Leone","Slovak Republic","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St. Lucia","Sudan","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Venezuela","Vietnam","West Bank and Gaza Strip","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"
+        ],
+        "labels": [
+          "Afghanistan","Albania","Algeria","Angola","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia-Herzegovina","Brazil","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Democratic Republic of the Congo","Denmark","Djibouti","Dominican Republic","East Timor","Ecuador","Egypt","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","International","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mexico","Moldova","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Pakistan","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Republic of the Congo","Romania","Russia","Rwanda","Saudi Arabia","Senegal","Serbia","Serbia-Montenegro","Sierra Leone","Slovak Republic","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St. Lucia","Sudan","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Venezuela","Vietnam","West Bank and Gaza Strip","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"
+        ],
+        "name": "Country Selection: "
+      }
+    }
+  ],
+  "transform": [
+  {"filter": "Continent_selection == null || datum.country_txt == Continent_selection"}],
+  
+  "encoding": {
+    "x": {"field": "iyear", "type": "temporal", "title": "Year"},
+    "y": {"field": "nkill", "type": "quantitative", "title": "Number of deaths"},
+    "color": {
+      "condition": {
+        "selection": "hover",
+        "field":"country_txt",
+        "type":"nominal",
+        "legend": null
+      },
+      "value": "blue"
+    },
+    "opacity": {
+      "condition": {
+        "selection": "hover",
+        "value": 1
+      },
+      "value": 0.2
+    }
+  },
+  "layer": [{
+    "description": "transparent layer to make it easier to trigger selection",
+    "selection": {
+      "hover": {
+        "type": "single",
+        "on": "mouseover",
+        "empty": "all",
+        "fields": ["country_txt"],
+        "init": {"country_txt": "Afghanistan"}
+      }
+    },
+    "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
+  }, {
+    "mark": "line"
+  }, {
+    "encoding": {
+      "x": {"aggregate": "max", "field": "iyear"},
+      "y": {"aggregate": {"argmax": "iyear"}, "field": "nkill"}
+    },
+    "layer": [{
+      "mark": {"type": "circle"}
+    }, {
+      "mark": {"type": "text", "align": "left", "dx": 4},
+      "encoding": {"text": {"field":"country_txt", "type": "nominal"}}
+    }]
+  }],
+  "config": {"view": {"stroke": null}}
+}
