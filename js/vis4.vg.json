@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "title": "Number of people killed in terrorist attacks (relative)",
-  "width": 800, "height": 800,
+  "width": "container", "height": 800,
   "data": {"url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual2.csv"},
   "transform": [{"filter": "datum.nkill > 100"}],
   "mark": "area",
