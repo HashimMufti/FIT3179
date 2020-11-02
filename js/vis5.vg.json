@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "data": {"url": "https://raw.githubusercontent.com/HashimMufti/FIT3179/main/data/visual2.csv"},
   "title": "Total number of People Killed",
-  "width": 800,
+  "width": "container",
   "height": 800,
   "encoding": {
       "x": {"timeUnit": "year", "field": "iyear", "title": "Year"},
